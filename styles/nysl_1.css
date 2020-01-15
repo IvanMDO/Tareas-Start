@@ -1,0 +1,90 @@
+img.logo{
+	z-index:99;
+	width:225px;
+	height:225px;
+	position:relative;
+	bottom:130px;
+	left:950px;
+}
+#titulo{
+	font-size:50px;
+	position: absolute;
+	top:0px;
+	left:0px;
+	color:white
+
+}
+#titulo2{
+	position:relative;
+	bottom:338px;
+	background-color:#2D2E2D;
+	color:white;
+	text-align:center;
+	font-size:35px
+}
+*{
+	margin:0%
+}
+body{	
+	font-family:Helvetica;
+	background:#28EE78;
+	height:900px;
+	width:cover;
+}
+.link{
+	border: 2px solid black;
+	color:black;
+	text-align:center;
+	background-color:#00BC4C;
+	font-size:20px;
+	z-index:100;
+	display:block;
+	position:relative;
+	bottom:180px;
+	text-decoration:none;
+	font-weight:bold;
+}
+#about{
+	position:relative;
+	bottom:100px;
+}
+#contact{
+	position:relative;
+	bottom:20px;
+}
+header{
+	background-image:url(design1_image1.jpg);
+	background-size:cover;
+	background-repeat:no-repeat;
+	height:575px;
+	background-position:center;
+}
+nav{
+	width:150px;
+	margin-left:20px;
+}
+.link:hover{
+	background-color:#4BF08D;
+	color:blue;
+	text-decoration:underline;
+}
+.p1{
+	font-size:20px;
+	margin-top:20px;
+	font-weight:bold;
+
+}
+.p2{
+	position:relative;
+	left:20px;
+	margin-bottom:45px
+}
+main{
+	position:relative;
+	left:200px;
+	bottom:295px;
+	width:60vw;
+}
+
+
+
