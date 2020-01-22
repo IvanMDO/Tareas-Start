@@ -55,21 +55,133 @@ for (i = 0; i < ages.length; i++) {
 	console.log (ages[i])
 }
 
-// ------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------
 
+console.log("Menos Numero de la Matriz:")
 
+var matriz1 = [20, 14, 7, 5, 11, 32, 9, 3, 24, 36, 28]
 
+var matriz2 = [126, 174, 278, 583, 367, 100, 312, 96, 45, 32, 79, 543]
 
-function mifuncion(x){
+function array (matriz){
 
-var n = " es genial";
+	var menor = matriz[0]
 
-
-return(x+n); 
-
+	for (let i = 1 ; i < matriz.length ; i++){
+		if
+			(menor < matriz[i]){
+			menor = menor
+		}
+		else{
+			menor = matriz[i]
+		}
+	}
+	console.log("Numero mas Bajo: " + menor)
 }
 
-var num = mifuncion("ivan");
+array(matriz1)
+
+array(matriz2)
+
+// -----------------------------------------------------------------------------------------------
+
+console.log("Mayor Numero de la Matriz:")
+
+var matriz11 = [20, 14, 7, 5, 11, 32, 9, 3, 24, 36, 28]
+
+var matriz22 = [126, 174, 278, 583, 367, 100, 312, 96, 45, 32, 79, 543]
+
+function arraya (matriza){
+
+	var mayor = matriza[0]
+
+	for (let i = 1 ; i < matriza.length ; i++){
+		if
+		(mayor > matriza[i]) {
+		mayor = mayor
+		 }
+		 else{
+	 	mayor = matriza[i]
+		 }
+	}
+	console.log("Numero mas Alto: " + mayor)
+}
+
+arraya(matriz11)
+
+arraya(matriz22)
+
+// -----------------------------------------------------------------------------------------------
+
+var matriz111 = [5, 7, 9, 1, 3, 6, 8, 2, 4, 0]
+
+var matriz222 = [13, 15, 17, 19, 12, 14, 16, 18, 10]
+
+var indice = 4
+
+function arraya1 (matriza1){
+
+	console.log("Índice[n]: " + matriza1[indice])
+}
+
+arraya1(matriz111)
+
+arraya1(matriz222)
+
+// -----------------------------------------------------------------------------------------------
+
+console.log("Matriz de Numeros Repetidos: ")
+
+var matriz1111 = [3, 5, 7, 9, 1, 3, 4, 2, 6, 5, 7, 8, 9, 0, 9, 2]
+
+var iguales = []
+
+function arraya2 (matriza2) {
+
+	for (let i = 0 ; i < matriza2.length ; i++) {
+
+		for (let a = (i + 1) ; a < matriza2.length ; a++) {
+
+			if 
+			(matriza2[i] == matriza2[a]){
+					
+				iguales.push(matriza2[i])
+			}
+		}
+	}
+	console.log(iguales)
+}
+
+arraya2(matriz1111);
+
+// ------------------------------------------------------------------------------------------------
+
+var myColor = ["Red", "Green", "White", "Black"]
 
 
-console.log(num);
+
+function arraycolor (colors){
+	for (i = 0 ; i < myColor.length ; i++){
+		
+	}
+
+
+arraycolor(myColor)
+
+
+
+
+
+// function mifuncion(x){
+
+// var n = " es genial";
+
+
+// return(x+n); 
+
+// }
+
+// var num = mifuncion("ivan");
+
+
+// console.log(num);
