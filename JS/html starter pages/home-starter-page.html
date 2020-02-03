@@ -8,42 +8,69 @@
   <body class="bg-secondary">
     <header>            
       <div class="bg-white">
-        <img class="col-12" src="STYLE/LOGOTGIF.jpg">
+        <img alt="logo_tgif" class="col-12" src="STYLE/LOGOTGIF.jpg">
       </div>
     </header>
     <nav class="border border-dark bg-danger">
       <div class="d-flex justify-content-between">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link bg-dark text-white" href="home-starter-page.html">Home</a>
+            <a class="nav-link bg-dark text-light" href="home-starter-page.html">Home</a>
           </li>
-          <div class=" nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link text-light" href="#demo" data-toggle="collapse">Congress 113</a>
-              <ul id="demo" class="nav collapse">
-                <li class="nav-item">
-                  <a class="nav-link text-light" href="senate-data.html">Senate</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-light" href="house-starter-page.html">House</a>
-                </li>
-              </ul>
-            </li>
-          </div>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#demo" data-toggle="collapse">Congress 113</a>
+            <ul id="demo" class="nav collapse">
+              <li class="nav-item">
+                <a href="senate-data.html" class="nav-link text-white">Senate</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="house-starter-page.html">House</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a class="nav-link text-white" href="#demo" data-toggle="collapse">Attendance</a></li>
+            <ul id="demo" class="nav collapse">
+              <li class="nav-item">
+                <a href="senate-attendance-starter-page.html" class="nav-link text-white">Senate</a>
+              </li>
+              <li class="nav-item">
+                <a href="house-attendance-starter-page.html" class="nav-link text-white">House</a>
+              </li> 
+            </ul>
+          </li>  
+          <li>
+            <a class="nav-link text-white" href="#demo" data-toggle="collapse">Party Loyalty</a>
+            <ul id="demo" class="nav collapse">
+              <li class="nav-item">
+                <a href="senate-party-loyalty-starter-page.html" class="nav-link text-white">Senate</a>
+              </li>
+              <li class="nav-item">
+                <a href="house-party-loyalty-starter-page.html" class="nav-link text-white">House</a>
+              </li>
+            </ul>
+          </li>
         </ul>
-        <a href="mailto:info@tgif.com" class="col-1"><img class="w-50"  src="STYLE/correo.png"></a>
+        <a href="mailto:info@tgif.com" class="col-1"><img alt="logo_correo" class="w-50"  src="STYLE/correo.png"></a>
       </div>
-    </nav>        
+    </nav>            
     <!--Table container-->
     <main class="m-5 text-monospace text-white">
-      <h2 class="text-dark font-weight-bold">About Us</h2>
-      <p>Openness, accountability, and honesty define government transparency. In a free society, transparency is government's obligation to share information with citizens. It is at the heart of how citizens hold their public officials accountable. Here at TGIF we believe that government should be transparent.</p>  
-      <p>Governments exist to serve the people. Information on how officials conduct the public business and spend taxpayer money must be readily available and easily understood. This transparency allows good and just governance.  Transparency promotes accountability and provides information for citizens about what their Government is doing.</p>  
-      <p>We also believe that government should be participatory. Public engagement enhances the Government's effectiveness and improves the quality of its decisions. Knowledge is widely dispersed in society, and public officials benefit from having access to that dispersed knowledge. We invite you to use our site to become actively engaged in American government.</p>
-      <p>TGIF works to disclose information in forms that the public can readily find and use. We solicit public feedback to identify information of greatest use to the public.</p>
-      <p>
-      <a class="btn btn-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"> Read more... </a>
-      </p>
+      <div class="d-flex">
+        <div >
+          <h2 class="text-dark font-weight-bold">About Us</h2>
+          <p>Openness, accountability, and honesty define government transparency. In a free society, transparency is government's obligation to share information with citizens. It is at the heart of how citizens hold their public officials accountable. Here at TGIF we believe that government should be transparent.</p>  
+          <p>Governments exist to serve the people. Information on how officials conduct the public business and spend taxpayer money must be readily available and easily understood. This transparency allows good and just governance.  Transparency promotes accountability and provides information for citizens about what their Government is doing.</p>  
+          <p>We also believe that government should be participatory. Public engagement enhances the Government's effectiveness and improves the quality of its decisions. Knowledge is widely dispersed in society, and public officials benefit from having access to that dispersed knowledge. We invite you to use our site to become actively engaged in American government.</p>
+          <p>TGIF works to disclose information in forms that the public can readily find and use. We solicit public feedback to identify information of greatest use to the public.</p>
+          <p>
+          <a class="btn btn-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"> Read more... </a>
+          </p>
+        </div>
+        <div class="m-5 w-100">
+          <img class="w-100" alt="imagen_home" src="STYLE/lupita.png">
+        </div>
+      </div>
       <div class="collapse" id="collapseExample">
         <div>
           <h2 class="text-dark font-weight-bold">Background History of Government Transparency</h2>
@@ -58,7 +85,7 @@
       </div>
       <footer>
         <div class="bg-danger m-5 font-weight-bold">
-          <p class="text-center text-dark">©2016 TGIF | All Rights Reserved</p>
+          <p class="text-center text-dark border border-dark">©2016 TGIF | All Rights Reserved</p>
         </div>
       </footer>
     </main>
