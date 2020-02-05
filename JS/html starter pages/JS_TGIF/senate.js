@@ -2081,7 +2081,7 @@ var data =
                  "title": "Senator, 1st Class",
                  "short_title": "Sen.",
                  "api_uri":"https://api.propublica.org/congress/v1/members/H001046.json",
-                 "first_name": "Martin",
+                 "first_name": "Susan",
                  "middle_name": null,
                  "last_name": "Heinrich",
                  "suffix": null,
