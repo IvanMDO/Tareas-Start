@@ -1,3 +1,5 @@
+// ---------------------------Senate/House at a glance-----------------------------------
+
 const members = data.results[0].members.filter(j => j.total_votes !=0)
 
 const dri = document.getElementById("dri")
@@ -60,68 +62,311 @@ members.forEach(c => {
 
 })
 
-const least_engaged = document.getElementById("least_engaged")
+// ---------------------------Least Engaged Table------------------------------------
 
-let least_engaged_10pct = (members.length * 0.1).toFixed(0)
+function porcentaje (array,prop,isAscendet,idTable) {
+	const table = document.getElementById(idTable)
 
-let least_engaged_array = members.slice().sort( function(a,b){return b.missed_votes_pct - a.missed_votes_pct}).slice(0,least_engaged_10pct)
+	let sortedArray
 
-least_engaged_array.forEach(e => {
+	let pct10 = Math.round(array.length * 0.1)
 
-	let row = least_engaged.insertRow(-1);
+	if (table) {
+		if (isAscendet){
+			sortedArray = array.slice().sort( function(a,b){return a[prop] - b[prop]}).slice(0,pct10)
+		}
+		else {
 
-	let nombre
+			sortedArray = array.slice().sort( function(a,b){return b[prop] - a[prop]}).slice(0,pct10)
 
-	let fullname = e.last_name + " " + e.first_name + " " + (e.middle_name || " ")
+		}
 
-	if(e.url == ""){
-		nombre = fullname
-	}
+		sortedArray.forEach(e => {
 
-	else{
-		nombre = `<a class="text-white" target:"_blank" href="${e.url}">` + fullname + `</a>`
-	}
+		let row = table.insertRow(-1);
 
-	row.innerHTML = "<td>" + nombre + "</td><td>" + e.missed_votes + "</td><td>" + e.missed_votes_pct + "</td>"
+		let nombre
 
-})
+		let fullname = e.last_name + " " + e.first_name + " " + (e.middle_name || " ")
 
+		if(e.url == ""){
+			nombre = fullname
+		}
 
+		else{
+			nombre = `<a class="text-white" target:"_blank" href="${e.url}">` + fullname + `</a>`
+		}
 
-
-const most_engaged = document.getElementById("most_engaged")
-
-let most_engaged_10pct = (members.length * 0.1).toFixed(0)
-
-let most_engaged_array = members.slice().sort(function(a,b){return a.missed_votes_pct - b.missed_votes_pct}).slice(0,most_engaged_10pct)
-
-most_engaged_array.forEach(e =>  {
-
-	if (e.total_votes == 0) {
-		e.missed_votes = "-"
-		e.missed_votes_pct = "-"
-	}
-
-	let row = most_engaged.insertRow(-1);
-
-	let nombre
-
-	let fullname = e.last_name + " " + e.first_name + " " + (e.middle_name || " ")
-
-	if(e.url == ""){
-		nombre = fullname
-	}
-
-	else{
-		nombre = `<a class="text-white" target:"_blank" href="${e.url}">` + fullname + `</a>`
-	}
-
-	row.innerHTML = "<td>" + nombre + "</td><td>" + e.missed_votes + "</td><td>" + e.missed_votes_pct + "</td>"
+		row.innerHTML = "<td>" + nombre + "</td><td>" + e.missed_votes + "</td><td>" + e[prop] + "</td>"
 
 })
+	}
+
+
+}
+
+// let pct10 = Math.round(members.length * 0.1)
+
+// const least_engaged = document.getElementById("least_engaged")
+
+// if (least_engaged) {
+
+// 	let least_engaged_array = members.slice().sort( function(a,b){return b.missed_votes_pct - a.missed_votes_pct}).slice(0,pct10)
+
+// 	least_engaged_array.forEach(e => {
+
+// 		let row = least_engaged.insertRow(-1);
+
+// 		let nombre
+
+// 		let fullname = e.last_name + " " + e.first_name + " " + (e.middle_name || " ")
+
+// 		if(e.url == ""){
+// 			nombre = fullname
+// 		}
+
+// 		else{
+// 			nombre = `<a class="text-white" target:"_blank" href="${e.url}">` + fullname + `</a>`
+// 		}
+
+// 		row.innerHTML = "<td>" + nombre + "</td><td>" + e.missed_votes + "</td><td>" + e.missed_votes_pct + "</td>"
+
+// })
+
+// }
+
+// ---------------------------Most Engaged Table-------------------------------------
+
+// const most_engaged = document.getElementById("most_engaged")
+
+// if (most_engaged) {
+
+// 	let most_engaged_array = members.slice().sort(function(a,b){return a.missed_votes_pct - b.missed_votes_pct}).slice(0, + pct10)
+
+// 	most_engaged_array.forEach(e =>  {
+
+// 		let row = most_engaged.insertRow(-1);
+
+// 		let nombre
+
+// 		let fullname = e.last_name + " " + e.first_name + " " + (e.middle_name || " ")
+
+// 		if(e.url == ""){
+// 			nombre = fullname
+// 		}
+
+// 		else{
+// 			nombre = `<a class="text-white" target:"_blank" href="${e.url}">` + fullname + `</a>`
+// 		}
+
+// 		row.innerHTML = "<td>" + nombre + "</td><td>" + e.missed_votes + "</td><td>" + e.missed_votes_pct + "</td>"
+
+// })
+
+// }
+
+// // ---------------------------Least Loyal Table--------------------------------------------
+
+// const least_loyal = document.getElementById("least_loyal")
+
+// if (least_loyal) {
+
+// 	let least_loyal_array = members.slice().sort(function(a,b){return b.votes_with_party_pct - a.votes_with_party_pct}).slice(0,pct10)
+
+// 	least_loyal_array.forEach(e => {
+
+// 		let row = least_loyal.insertRow(-1);
+
+// 		let nombre
+
+// 		let fullname = e.last_name + " " + e.first_name + " " + (e.middle_name || " ")
+
+// 		if(e.url == ""){
+// 			nombre = fullname
+// 		}
+
+// 		else{
+// 			nombre = `<a class="text-white" target:"_blank" href="${e.url}">` + fullname + `</a>`
+// 		}
+
+// 		let least_no_party_votes = parseFloat((e.votes_with_party_pct * e.total_votes) * 0.01).toFixed(0)
+
+// 		row.innerHTML = "<td>" + nombre + "</td><td>" + least_no_party_votes + "</td><td>" + e.votes_with_party_pct + "</td>"
+
+// })
+
+// }
+
+// // ---------------------------Most Loyal Table-------------------------------------------
+
+// const most_loyal = document.getElementById("most_loyal")
+
+// if (most_loyal) {
+
+// 	let most_loyal_array = members.slice().sort(function(a,b){return a.votes_with_party_pct - b.votes_with_party_pct}).slice(0,pct10)
+
+// 	most_loyal_array.forEach(e => {
+
+// 		let row = most_loyal.insertRow(-1);
+
+// 		let nombre
+
+// 		let fullname = e.last_name + " " + e.first_name + " " + (e.middle_name || " ")
+
+// 		if(e.url == ""){
+// 			nombre = fullname
+// 		}
+
+// 		else{
+// 			nombre = `<a class="text-white" target:"_blank" href="${e.url}">` + fullname + `</a>`
+// 		}
+
+// 		let most_no_party_votes = parseFloat((e.votes_with_party_pct * e.total_votes) / 100).toFixed(0)
+
+// 		row.innerHTML = "<td>" + nombre + "</td><td>" + most_no_party_votes + "</td><td>" + e.votes_with_party_pct + "</td>"
+
+// })
+
+// }
+
+// // ---------------------------Least Engaged Table------------------------------------
+
+// const least_engaged = document.getElementById("least_engaged")
+
+// if (least_engaged) {
+
+// 	let least_engaged_10pct = (members.length * 0.1).toFixed(0)
+
+// 	let least_engaged_array = members.slice().sort( function(a,b){return b.missed_votes_pct - a.missed_votes_pct}).slice(0,least_engaged_10pct)
+
+// 	least_engaged_array.forEach(e => {
+
+// 		let row = least_engaged.insertRow(-1);
+
+// 		let nombre
+
+// 		let fullname = e.last_name + " " + e.first_name + " " + (e.middle_name || " ")
+
+// 		if(e.url == ""){
+// 			nombre = fullname
+// 		}
+
+// 		else{
+// 			nombre = `<a class="text-white" target:"_blank" href="${e.url}">` + fullname + `</a>`
+// 		}
+
+// 		row.innerHTML = "<td>" + nombre + "</td><td>" + e.missed_votes + "</td><td>" + e.missed_votes_pct + "</td>"
+
+// })
+
+// }
+
+// // ---------------------------Most Engaged Table-------------------------------------
+
+// const most_engaged = document.getElementById("most_engaged")
+
+// if (most_engaged) {
+
+// 	let most_engaged_10pct = (members.length * 0.1).toFixed(0)
+
+// 	let most_engaged_array = members.slice().sort(function(a,b){return a.missed_votes_pct - b.missed_votes_pct}).slice(0,most_engaged_10pct)
+
+// 	most_engaged_array.forEach(e =>  {
+
+// 		let row = most_engaged.insertRow(-1);
+
+// 		let nombre
+
+// 		let fullname = e.last_name + " " + e.first_name + " " + (e.middle_name || " ")
+
+// 		if(e.url == ""){
+// 			nombre = fullname
+// 		}
+
+// 		else{
+// 			nombre = `<a class="text-white" target:"_blank" href="${e.url}">` + fullname + `</a>`
+// 		}
+
+// 		row.innerHTML = "<td>" + nombre + "</td><td>" + e.missed_votes + "</td><td>" + e.missed_votes_pct + "</td>"
+
+// })
+
+// }
+
+// // ---------------------------Least Loyal Table--------------------------------------------
+
+// const least_loyal = document.getElementById("least_loyal")
+
+// if (least_loyal) {
+
+// 	let least_loyal_10pct = (members.length * 0.1).toFixed(0)
+
+// 	let least_loyal_array = members.slice().sort(function(a,b){return b.votes_with_party_pct - a.votes_with_party_pct}).slice(0,least_loyal_10pct)
+
+// 	least_loyal_array.forEach(e => {
+
+// 		let row = least_loyal.insertRow(-1);
+
+// 		let nombre
+
+// 		let fullname = e.last_name + " " + e.first_name + " " + (e.middle_name || " ")
+
+// 		if(e.url == ""){
+// 			nombre = fullname
+// 		}
+
+// 		else{
+// 			nombre = `<a class="text-white" target:"_blank" href="${e.url}">` + fullname + `</a>`
+// 		}
+
+// 		let least_no_party_votes = parseFloat((e.votes_with_party_pct * e.total_votes) * 0.01).toFixed(0)
+
+// 		row.innerHTML = "<td>" + nombre + "</td><td>" + least_no_party_votes + "</td><td>" + e.votes_with_party_pct + "</td>"
+
+// })
+
+// }
+
+// // ---------------------------Most Loyal Table-------------------------------------------
+
+// const most_loyal = document.getElementById("most_loyal")
+
+// if (most_loyal) {
+
+// 	let most_loyal_10pct = (members.length * 0.1).toFixed(0)
+
+// 	let most_loyal_array = members.slice().sort(function(a,b){return a.votes_with_party_pct - b.votes_with_party_pct}).slice(0,most_loyal_10pct)
+
+// 	most_loyal_array.forEach(e => {
+
+// 		let row = most_loyal.insertRow(-1);
+
+// 		let nombre
+
+// 		let fullname = e.last_name + " " + e.first_name + " " + (e.middle_name || " ")
+
+// 		if(e.url == ""){
+// 			nombre = fullname
+// 		}
+
+// 		else{
+// 			nombre = `<a class="text-white" target:"_blank" href="${e.url}">` + fullname + `</a>`
+// 		}
+
+// 		let most_no_party_votes = parseFloat((e.votes_with_party_pct * e.total_votes) / 100).toFixed(0)
+
+// 		row.innerHTML = "<td>" + nombre + "</td><td>" + most_no_party_votes + "</td><td>" + e.votes_with_party_pct + "</td>"
+
+// })
+
+// }
 
 
 
+// function mf(pro,isAscendet)
+
+
+// mf("votes_with_party_pct",false)
 
 
 
