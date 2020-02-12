@@ -32,13 +32,13 @@ members.forEach(c => {
 
 })
 
-stats.votesPartyD = + (parseFloat(stats.votesPartyD/stats.democrats).toFixed(2))
+stats.votesPartyD = stats.democrats !=0 ? + (parseFloat(stats.votesPartyD/stats.democrats).toFixed(2)) : "-"
 
-stats.votesPartyR = + (parseFloat(stats.votesPartyR/stats.republicans).toFixed(2))
+stats.votesPartyR = stats.republicans !=0 ? + (parseFloat(stats.votesPartyR/stats.republicans).toFixed(2)) : "-"
 
-stats.votesPartyI = + (parseFloat(stats.votesPartyI/stats.independents).toFixed(2))
+stats.votesPartyI = stats.independents !=0 ? + (parseFloat(stats.votesPartyI/stats.independents).toFixed(2)) : "-"
 
-stats.totalPct = parseFloat((stats.votesPartyD + stats.votesPartyR + stats.votesPartyI) / 3).toFixed(2)
+stats.totalPct = stats.independents && stats.republicans && stats.democrats !=0 ? parseFloat((stats.votesPartyD + stats.votesPartyR + stats.votesPartyI) / 3).toFixed(2) : parseFloat((stats.votesPartyD + stats.votesPartyR) / 2).toFixed(2) 
 
 	dri.innerHTML = `<tr> <td> Democrats </td><td> ${stats.democrats} </td><td> ${stats.votesPartyD} </td></tr> 
 	<tr><td> Republicans </td><td> ${stats.republicans} </td><td> ${stats.votesPartyR} </td></tr> 
@@ -48,6 +48,7 @@ stats.totalPct = parseFloat((stats.votesPartyD + stats.votesPartyR + stats.votes
 // ---------------------------Tablas 10%------------------------------------
 
 function porcentaje (array,prop,isAscendet,idTable) {
+
 	const table = document.getElementById(idTable)
 
 	let sortedArray
@@ -120,8 +121,8 @@ function porcentaje (array,prop,isAscendet,idTable) {
 
 porcentaje (members,"missed_votes_pct",false,"least_engaged")
 porcentaje (members,"missed_votes_pct",true,"most_engaged")
-porcentaje (members,"votes_with_party_pct",false,"least_loyal")
-porcentaje (members,"votes_with_party_pct",true,"most_loyal")
+porcentaje (members,"votes_with_party_pct",true,"least_loyal")
+porcentaje (members,"votes_with_party_pct",false,"most_loyal")
 
 
 
