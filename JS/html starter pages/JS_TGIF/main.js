@@ -1,9 +1,42 @@
-const members = data.results[0].members
+let url 
+	document.getElementById("table-data") != null ? url= "https://api.propublica.org/congress/v1/113/senate/members.json" : url = "https://api.propublica.org/congress/v1/113/house/members.json" 
+	let init = {
+		method: 'GET',
+		headers:{
+			"X-API-KEY":"ed3CDvs6IKKLrcuyirag5GudlY6OtegHXtbeKIL2"
+		}
+	
+	}
+let members
+async function getData(url,init){
+			await fetch(url, init)
+			.then(function(res){
+				if(res.ok){
+					return res.json()
+				} else{
+					throw new Error(res.status)
+				}
+			})
+			.then(function(json){
+				let data = json
+				members = data.results[0].members
+				tableFetch()
+			})
+			.catch(function(error){
+				console.log(error)
+			})			
+		}
 
-const tbody = document.querySelector("tbody")
+getData(url, init)
+
+let tableData 
+
+document.getElementById("table-data") != null ? tableData = document.getElementById("table-data") : tableData = document.getElementById("table-data2")
+
+function tableFetch (){
 
 function checkbox(){
-	document.getElementById("table-data").innerHTML =""
+	tableData.innerHTML =""
 	let state = document.getElementById("inputState").value
 	let party = document.getElementsByClassName("form-check-input") 
 	let select = []
@@ -16,7 +49,7 @@ function checkbox(){
 
 			members.filter(e => e.party == party[i].value && (e.state == state || state == "all")). forEach(member => {
 
-				let row = tbody.insertRow(-1);
+				let row = tableData.insertRow(-1);
 
 				let nombre
 
@@ -50,6 +83,7 @@ document.getElementById("inlineCheckbox2").addEventListener("click", checkbox)
 document.getElementById("inlineCheckbox3").addEventListener("click", checkbox)
 checkbox()
 document.getElementById("inputState").addEventListener("change", checkbox)
+}
 
 // function checkbox(){
 // 	tbody.innerHTML =""

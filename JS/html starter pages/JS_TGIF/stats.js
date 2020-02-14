@@ -1,8 +1,34 @@
-// ---------------------------Senate/House at a glance-----------------------------------
+let url 
+	document.getElementById("dri") != null ? url= "https://api.propublica.org/congress/v1/113/senate/members.json" : url = "https://api.propublica.org/congress/v1/113/house/members.json" 
+	let init = {
+		method: 'GET',
+		headers:{
+			"X-API-KEY":"ed3CDvs6IKKLrcuyirag5GudlY6OtegHXtbeKIL2"
+		}
+	
+	}
+let members
+async function getData(url,init){
+			await fetch(url, init)
+			.then(function(res){
+				if(res.ok){
+					return res.json()
+				} else{
+					throw new Error(res.status)
+				}
+			})
+			.then(function(json){
+				let data = json
+				members = data.results[0].members.filter(j => j.total_votes !=0)
+				fetchFunction()
+				pctFetch()
+			})
+			.catch(function(error){
+				console.log(error)
+			})			
+		}
 
-const members = data.results[0].members.filter(j => j.total_votes !=0)
-
-const dri = document.getElementById("dri")
+getData(url, init)
 
 let stats={
 	democrats:0,
@@ -11,10 +37,15 @@ let stats={
 	votesPartyD:0,
 	votesPartyR:0,
 	votesPartyI:0,
-	total : data.results[0].num_results,
+	total : 0,
 	totalPct:0,
 }
 
+let dri 
+
+document.getElementById("dri") != null ? dri = document.getElementById("dri") : dri = document.getElementById("dri2")
+
+function fetchFunction (){
 members.forEach(c => {
 
 		if (c.party == "D") {
@@ -40,11 +71,13 @@ stats.votesPartyI = stats.independents !=0 ? + (parseFloat(stats.votesPartyI/sta
 
 stats.totalPct = stats.independents && stats.republicans && stats.democrats !=0 ? parseFloat((stats.votesPartyD + stats.votesPartyR + stats.votesPartyI) / 3).toFixed(2) : parseFloat((stats.votesPartyD + stats.votesPartyR) / 2).toFixed(2) 
 
+stats.total = stats.democrats + stats.republicans + stats.independents
+
 	dri.innerHTML = `<tr> <td> Democrats </td><td> ${stats.democrats} </td><td> ${stats.votesPartyD} </td></tr> 
 	<tr><td> Republicans </td><td> ${stats.republicans} </td><td> ${stats.votesPartyR} </td></tr> 
 	<tr><td> Independents </td><td> ${stats.independents} </td><td> ${stats.votesPartyI} </td></tr>
 	<tr><td> Total </td><td> ${stats.total} </td><td> ${stats.totalPct} </td></tr>` 
-
+}
 // ---------------------------Tablas 10%------------------------------------
 
 function porcentaje (array,prop,isAscendet,idTable) {
@@ -119,11 +152,13 @@ function porcentaje (array,prop,isAscendet,idTable) {
 
 }
 
+function pctFetch (){
+
 porcentaje (members,"missed_votes_pct",false,"least_engaged")
 porcentaje (members,"missed_votes_pct",true,"most_engaged")
 porcentaje (members,"votes_with_party_pct",true,"least_loyal")
 porcentaje (members,"votes_with_party_pct",false,"most_loyal")
-
+}
 
 
 // // ---------------------------Least Engaged Table------------------------------------
